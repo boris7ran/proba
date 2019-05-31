@@ -37,5 +37,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Posts::class);
+    }
+
     const STORE_RULES = ['name' => 'required', 'email' => 'required', 'password' => 'required'];
 }

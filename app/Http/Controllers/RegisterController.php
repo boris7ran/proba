@@ -7,6 +7,10 @@ use App\User;
 
 class RegisterController extends Controller
 {
+    public function __construct() {
+        $this->middleware('guest');
+    }
+
     public function create()
     {
         return view('auth.register');
@@ -23,7 +27,7 @@ class RegisterController extends Controller
         $user->password = bcrypt(request('password'));
 
         $user->save();
-        
+
         auth()->login($user);
 
         return redirect()->route('all-post');

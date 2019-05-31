@@ -9,9 +9,17 @@
     <h1>
         {{$post->title}}
     </h1>
+
     <p>
         {{ $post->body }}
     </p>
+
+    @if ($post->user->name)
+        <p>
+            Creator: {{ $post->user->name }}
+        </p>
+    @endif
+
     @if(count($post->comments))
         <h4> Comments </h4>
 
@@ -36,6 +44,7 @@
             <label for="description"> Description </label>
             <textarea class="form-control" id="description" name="description"></textarea>
         </div>
+        
 
         <div class="form-group">
             <button type="submit">Submit</button>

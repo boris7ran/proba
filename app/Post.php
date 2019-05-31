@@ -12,11 +12,16 @@ class Post extends Model
 
     public static function published()
     {
-        return self::where('published', true)->get();
+        return self::where('published', true)->with('user')->get();
     }
 
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
